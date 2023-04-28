@@ -10,6 +10,9 @@ export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        employee_id: '',
+        address: '',
+        phone: '',
         password: '',
         password_confirmation: '',
     });
@@ -47,7 +50,59 @@ export default function Register() {
 
                     <InputError message={errors.name} className="mt-2" />
                 </div>
+                {/* Employee ID */}
+                <div className='mt-4'>
+                    <InputLabel htmlFor="employee_id" value="Employee ID" />
 
+                    <TextInput
+                        id="employee_id"
+                        name="employee_id"
+                        value={data.employee_id}
+                        className="mt-1 block w-full"
+                        autoComplete="employee_id"
+                        isFocused={true}
+                        onChange={(e) => setData('employee_id', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.employee_id} className="mt-2" />
+                </div>
+                {/* Employee address */}
+                <div className='mt-4'>
+                    <InputLabel htmlFor="address" value="Address" />
+
+                    <TextInput
+                        id="address"
+                        name="address"
+                        value={data.address}
+                        className="mt-1 block w-full"
+                        autoComplete="address"
+                        isFocused={true}
+                        onChange={(e) => setData('address', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.address} className="mt-2" />
+                </div>
+                {/* Employee address */}
+                <div className='mt-4'>
+                    <InputLabel htmlFor="phone" value="Phone Number" />
+
+                    <TextInput
+                        id="phone"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-1 block w-full"
+                        autoComplete="phone"
+                        isFocused={true}
+                        onChange={(e) => setData('phone', e.target.value)}
+                        required
+                    />
+                    
+                    <InputError message={errors.phone} className="mt-2" />
+                </div>
+                
+                {/* email box */}
                 <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -64,7 +119,7 @@ export default function Register() {
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
-
+                {/* Password box */}
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
@@ -81,7 +136,7 @@ export default function Register() {
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
-
+                {/* password confirm box */}
                 <div className="mt-4">
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
@@ -98,7 +153,7 @@ export default function Register() {
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
-
+                {/* Login button down below */}
                 <div className="flex items-center justify-end mt-4">
                     <Link
                         href={route('login')}
@@ -106,7 +161,7 @@ export default function Register() {
                     >
                         Already registered?
                     </Link>
-
+                    {/* Register button */}
                     <PrimaryButton className="ml-4" disabled={processing}>
                         Register
                     </PrimaryButton>
