@@ -136,7 +136,7 @@ export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        //this div is baclground color.
+        //this div is background color.
         <div className="min-h-screen bg-blue-50">
             {/*This is the divider blue line.*/}
             <nav className="bg-white border-b border-blue-100">
@@ -145,7 +145,7 @@ export default function Authenticated({ user, header, children }) {
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <ApplicationLogo className="block h-14 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
