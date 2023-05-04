@@ -159,6 +159,9 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('posts.index')} active={route().current('posts.index')}>
                                 Posts
                                 </NavLink>
+                                <NavLink href={route('ponds.index')} active={route().current('ponds.index')}>
+                                Ponds
+                                </NavLink>
                             </div>
                         </div>
 
