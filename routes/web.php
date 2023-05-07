@@ -34,9 +34,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/ponds', [PondController::class, 'index']);
+Route::resource('ponds', \App\Http\Controllers\Pond\PondController::class);
 
-
+Route::resource('posts', \App\Http\Controllers\PostController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
