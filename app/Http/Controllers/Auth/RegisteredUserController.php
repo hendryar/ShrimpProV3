@@ -14,6 +14,10 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
+
+
+
+//Validates and create a new user (in this case, a manager)
 class RegisteredUserController extends Controller
 {
     /**

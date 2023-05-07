@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
+import LoginLayout from '@/Layouts/LoginLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -27,7 +27,7 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
+        <LoginLayout>
             <Head title="Log in" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
@@ -86,12 +86,18 @@ export default function Login({ status, canResetPassword }) {
                             Forgot your password?
                         </Link>
                     )} */}
+                    <Link
+                        href='/'
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Back
+                    </Link>
 
                     <PrimaryButton className="ml-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </LoginLayout>
     );
 }
