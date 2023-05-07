@@ -27,9 +27,7 @@ Route::get('/welcome', function () {
     ]);
 });
 Route::get('/', function () {
-    return Inertia::render('Homepage',[
-        'title' => 'ShrimpPro',
-        'description' => 'ShrimpPro is an ESP32 based shrimp farm water quality monitoring system',
+    return Inertia::render('Guest/LandingPage',[
 
     ]);
 });
