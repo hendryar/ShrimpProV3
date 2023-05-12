@@ -1,9 +1,9 @@
 import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/ManagerLayout';
 import { router } from '@inertiajs/react'
 import { Head, usePage, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Index({ auth }) {
 
     const { posts } = usePage().props
     function destroy(e) {

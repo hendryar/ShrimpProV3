@@ -1,12 +1,14 @@
+import React from 'react';
 import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
+import LoginLayout from '@/Layouts/LoginLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
+export default function Register({ auth }) {
+
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -24,14 +26,14 @@ export default function Register() {
     }, []);
 
     const submit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         post(route('register'));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <LoginLayout>
+            <Head title="Registering a Manager" />
 
             <form onSubmit={submit}>
                 <div>
@@ -167,6 +169,6 @@ export default function Register() {
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </LoginLayout>
     );
 }

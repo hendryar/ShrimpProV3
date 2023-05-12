@@ -2,10 +2,10 @@ import React from 'react';
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 // import { Head, useForm, Link } from '@inertiajs/react';
   
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/ManagerLayout';
 import { Head, useForm, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Create({ auth }) {
   
     const { data, setData, errors, post } = useForm({
         title: "",

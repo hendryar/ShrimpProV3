@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pond;
+namespace App\Http\Controllers\Admin\Pond;
 
 use App\Models\pond;
 use App\Models\Post;
@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 Use Inertia\Inertia;
 use Illuminate\Support\Facades\Validator;
 
-class PondController extends Controller
+class AdminPondController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class PondController extends Controller
     public function index()
     {
         $ponds = Pond::all();
-        return Inertia::render('Ponds/Index', ['ponds' => $ponds]);
+        return Inertia::render('Admin/Ponds/Index', ['ponds' => $ponds]);
     }
   
     /**
@@ -27,7 +27,7 @@ class PondController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Ponds/Create');
+        return Inertia::render('Admin/Ponds/Create');
     }
     
     /**
@@ -47,7 +47,7 @@ class PondController extends Controller
    
         Pond::create($request->all());
     
-        return redirect()->route('ponds.index');
+        return redirect()->route('adminponds.index');
     }
   
     /**
@@ -55,12 +55,14 @@ class PondController extends Controller
      *
      * @return response()
      */
-    public function edit(Pond $pond)
+    public function edit($id)
     {
-        return Inertia::render('Ponds/Edit', [
+        $pond = Pond::findOrFail($id);
+        return Inertia::render('Admin/Ponds/Edit', [
             'pond' => $pond
         ]);
-    }
+        // return dd($pond);
+    } 
     
     /**
      * Show the form for creating a new resource.
@@ -70,13 +72,16 @@ class PondController extends Controller
     public function update($id, Request $request)
     {
         Validator::make($request->all(), [
-            'title' => ['required'],
-            'body' => ['required'],
+            'name' => ['required'],
+            'area' => ['required'],
+            'shrimpbreed' => ['required'],
+            'tonnage' => ['required'],
         ])->validate();
     
         Pond::find($id)->update($request->all());
-        return redirect()->route('ponds.index');
-    }
+        // return redirect()->route('adminponds.index');
+        //return back to admin pond index route page with success message
+        return redirect()->route('adminponds.index')->with('success', 'Pond updated successfully');    }
     
     /**
      * Show the form for creating a new resource.
@@ -86,6 +91,6 @@ class PondController extends Controller
     public function destroy($id)
     {
         Pond::find($id)->delete();
-        return redirect()->route('ponds.index');
+        return redirect()->route('adminponds.index');
     }
 }

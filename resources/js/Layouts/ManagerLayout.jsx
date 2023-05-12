@@ -5,12 +5,11 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 
-
-export default function Guest({ header, children }) {
+export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-     //this div is background color.
 
-    return(
+    return (
+        //this div is background color.
         <div className="min-h-screen bg-blue-50">
             {/*This is the divider blue line.*/}
             <nav className="bg-white border-b border-blue-100">
@@ -24,18 +23,55 @@ export default function Guest({ header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                {/* <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Home
-                                </NavLink> */}
+                                <NavLink href={route('manager.dashboard')} active={route().current('manager.dashboard')}>
+                                    Dashboard
+                                </NavLink>
                                 {/* <NavLink href={route('chirps.index')} active={route().current('chirps.index')}>
                                     Chirps
                                 </NavLink> */}
-                                <NavLink href={route('posts.index')} active={route().current('posts.index')}>
-                                View Alerts
+                                {/* <NavLink href={route('posts.index')} active={route().current('posts.index')}>
+                                Posts
+                                </NavLink> */}
+                                <NavLink href={route('managerponds.index')} active={route().current('managerponds.index')}>
+                                Ponds
                                 </NavLink>
-                                <NavLink href={route('login')} active={route().current('login')}>
-                                Login
-                                </NavLink>
+                            </div>
+                        </div>
+
+                        <div className="hidden sm:flex sm:items-center sm:ml-6">
+                            <div className="ml-3 relative">
+                                <Dropdown>
+                                    <Dropdown.Trigger>
+                                        <span className="inline-flex rounded-md">
+                                            <button
+                                                type="button"
+                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                            >
+                                                {user.name}
+
+                                                <svg
+                                                    className="ml-2 -mr-0.5 h-4 w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </Dropdown.Trigger>
+
+                                    <Dropdown.Content>
+                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                        <Dropdown.Link href={route('logout')} method="post" as="button">
+                                            Log Out
+                                        </Dropdown.Link>
+                                    </Dropdown.Content>
+                                </Dropdown>
                             </div>
                         </div>
 
@@ -67,16 +103,18 @@ export default function Guest({ header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink href={route('manager.dashboard')} active={route().current('manager.dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('managerponds.index')} active={route().current('managerponds.index')}>
+                        Ponds
+                        </ResponsiveNavLink>
+                        
 
-                        {/* <ResponsiveNavLink href={route('chirps.index')} active={route().current('chirps.index')}>
-                            Chirps
-                        </ResponsiveNavLink> */}
+
                     </div>
 
-                    {/* <div className="pt-4 pb-1 border-t border-gray-200">
+                    <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800">{user.name}</div>
                             <div className="font-medium text-sm text-gray-500">{user.email}</div>
@@ -88,7 +126,7 @@ export default function Guest({ header, children }) {
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </nav>
 
