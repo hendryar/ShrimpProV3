@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\ChirpController;
-use App\Http\Controllers\PondController;
+use App\Http\Controllers\Admin\Pond\AdminPondController;
+use App\Http\Controllers\Manager\Pond\ManagerPondController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -32,13 +32,26 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('ponds', \App\Http\Controllers\Pond\PondController::class);
+Route::resource('adminponds', AdminPondController::class);
+Route::resource('managerponds', ManagerPondController::class);
+Route::resource('manageusers', App\Http\Controllers\Admin\RegisterManagerController::class);
+
+
+//managerponds
+
+
 
 Route::resource('posts', \App\Http\Controllers\PostController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/admin_dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth']);
+
+Route::get('/manager_dashboard', [App\Http\Controllers\Manager\DashboardController::class, 'index'])->name('manager.dashboard')->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

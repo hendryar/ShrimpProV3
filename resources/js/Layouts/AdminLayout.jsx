@@ -25,16 +25,14 @@ export default function AdminLayout({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <NavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
                                     Dashboard
                                 </NavLink>
-                                {/* <NavLink href={route('chirps.index')} active={route().current('chirps.index')}>
-                                    Chirps
-                                </NavLink> */}
-                                <NavLink href={route('posts.index')} active={route().current('posts.index')}>
-                                Posts
+                                <NavLink href={route('manageusers.index')} active={route().current('manageusers.index')}>
+                                    Manage Users
                                 </NavLink>
-                                <NavLink href={route('ponds.index')} active={route().current('ponds.index')}>
+                                
+                                <NavLink href={route('adminponds.index')} active={route().current('adminponds.index')}>
                                 Ponds
                                 </NavLink>
                             </div>
@@ -105,9 +103,9 @@ export default function AdminLayout({ user, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        {/* <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
-                        </ResponsiveNavLink>
+                        </ResponsiveNavLink> */}
 
                         {/* <ResponsiveNavLink href={route('chirps.index')} active={route().current('chirps.index')}>
                             Chirps

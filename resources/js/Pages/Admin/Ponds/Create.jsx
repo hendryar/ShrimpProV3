@@ -2,7 +2,7 @@ import React from 'react';
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 // import { Head, useForm, Link } from '@inertiajs/react';
   
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, Link } from '@inertiajs/react';
 import Swal from 'sweetalert2';
 
@@ -12,28 +12,37 @@ export default function Dashboard({ auth }) {
         title: "",
         description: "",
     });
-  
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     post(route("ponds.store"));
-        
-    // }
+
+
     function handleSubmit(e) {
         e.preventDefault();
-        Swal.fire({
-          title: 'Success!',
-          text: 'Data has been saved.',
-          icon: 'success',
-          confirmButtonText: 'Ok',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            post(route('ponds.store'));
-          }
-        });
+      
+        // Check if all fields are filled
+        if (data.name && data.area && data.shrimpbreed && data.tonnage) {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Data has been saved.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              post(route('adminponds.store'));
+            }
+          });
+        } else {
+          // Show an error message if not all fields are filled
+          Swal.fire({
+            title: 'Error!',
+            text: 'Please fill all fields.',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          });
+        }
       }
-  
+
+
     return (
-        <AuthenticatedLayout
+        <AdminLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Pond</h2>}
         >
@@ -46,8 +55,8 @@ export default function Dashboard({ auth }) {
   
                             <div className="flex items-center justify-between mb-6">
                                 <Link
-                                    className="px-6 py-2 text-white bg-blue-500 rounded-md focus:outline-none"
-                                    href={ route("ponds.index") }
+                                    className="px-6 py-2 text-white bg-indigo-500 rounded-md focus:outline-none"
+                                    href={ route("adminponds.index") }
                                 >
                                     Back
                                 </Link>
@@ -67,9 +76,6 @@ export default function Dashboard({ auth }) {
                                                 setData("name", e.target.value)
                                             }
                                         />
-                                        <span className="text-red-600">
-                                            {errors.name}
-                                        </span>
                                     </div>
                                     <div className="mb-4">
                                         <label className="">Pond Area</label>
@@ -83,9 +89,6 @@ export default function Dashboard({ auth }) {
                                                 setData("area", e.target.value)
                                             }
                                         />
-                                        <span className="text-red-600">
-                                            {errors.area}
-                                        </span>
                                     </div>
                                     <div className="mb-4">
                                         <label className="">Shrimp Breed</label>
@@ -99,9 +102,6 @@ export default function Dashboard({ auth }) {
                                                 setData("shrimpbreed", e.target.value)
                                             }
                                         />
-                                        <span className="text-red-600">
-                                            {errors.shrimpbreed}
-                                        </span>
                                     </div>
                                     <div className="mb-4">
                                         <label className="">Tonnage</label>
@@ -115,16 +115,12 @@ export default function Dashboard({ auth }) {
                                                 setData("tonnage", e.target.value)
                                             }
                                         />
-                                        <span className="text-red-600">
-                                            {errors.tonnage}
-                                        </span>
                                     </div>
                                 </div>
                                 <div className="mt-4">
                                     <button
                                         type="submit"
-                                        className="px-6 py-2 font-bold text-white bg-green-500 rounded"
-                                        
+                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded"
                                     >
                                         Save
                                     </button>
@@ -135,6 +131,6 @@ export default function Dashboard({ auth }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </AdminLayout>
     );
 }

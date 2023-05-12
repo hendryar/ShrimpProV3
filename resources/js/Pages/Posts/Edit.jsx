@@ -1,7 +1,7 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Layouts/ManagerLayout';
 import { Head, useForm, usePage, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Edit({ auth }) {
 
     const { post } = usePage().props;
     const { data, setData, put, errors } = useForm({
