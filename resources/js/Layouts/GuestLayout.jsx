@@ -30,7 +30,7 @@ export default function Guest({ header, children }) {
                                 {/* <NavLink href={route('chirps.index')} active={route().current('chirps.index')}>
                                     Chirps
                                 </NavLink> */}
-                                <NavLink href={route('posts.index')} active={route().current('posts.index')}>
+                                <NavLink active={route().current('posts.index')}>
                                 View Alerts
                                 </NavLink>
                                 <NavLink href={route('login')} active={route().current('login')}>

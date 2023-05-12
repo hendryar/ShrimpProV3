@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
+import { router } from '@inertiajs/react';
 import { Head, useForm, usePage, Link } from '@inertiajs/react';
+import Swal from 'sweetalert2';
+
 
 export default function Edit({ auth }) {
     const { editedUser } = usePage().props;
@@ -12,14 +15,36 @@ export default function Edit({ auth }) {
         phone: editedUser.phone || "",
         address: editedUser.address || "",
     });
-  
+ 
     function handleSubmit(e) {
         e.preventDefault();
-        put(route("manageusers.update", editedUser.id));
-    }
+        put(route("manageusers.update", editedUser.id), {
+          preserveState: true,
+          onSuccess: () => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'User updated successfully',
+              icon: 'success',
+              buttons: {
+                confirm: {
+                  text: 'OK',
+                  className:
+                    'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full',
+                  closeModal: true,
+                },
+              },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.visit(route('manageusers.index'));
+                }
+              });
+          },
+        });
+      }
+
     return (
         <AdminLayout
-            // user={auth.user}
+            user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit User</h2>}
         >
             <Head title="Edit User" />

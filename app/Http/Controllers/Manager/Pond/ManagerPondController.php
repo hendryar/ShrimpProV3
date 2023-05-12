@@ -76,7 +76,6 @@ class ManagerPondController extends Controller
          ])->validate();
      
          Pond::find($id)->update($request->all());
-         return redirect()->route('managerponds.index');
      }
 
 

@@ -44,7 +44,6 @@ class RegisterManagerController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        error_log(json_encode($user));
         return Inertia::render('Admin/Users/Edit', [
             
             'editedUser' => $user
@@ -56,22 +55,34 @@ class RegisterManagerController extends Controller
      *
      * @return Response
      */
-    public function update($id, Request $request)
-    {
-        Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'phone' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'employee_id' => 'required|string|max:255',
-        ])->validate();
+   
+        public function update($id, Request $request){
+        $request->validate([
+            'editedname' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'employee_id' => 'required',
+        ]);
         
-        User::find($id)->update($request->all());
-        return dd($request->all());
+        
+        //update the user details based on the request inputs
+        
+        User::where('id', '=', $id)->update([
+            'name' => $request->editedname,
+            'email' => $request->email,
+            'role' => $request->role,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'employee_id' => $request->employee_id,
+        ]);
+        // return redirect()->route('manageusers.index');
     }
-        // return redirect()->route('manageusers.index')->with('success', 'User updated successfully');    }
-    
+   
+
+
+
     /**
      * Show the form for creating a new resource.
      *

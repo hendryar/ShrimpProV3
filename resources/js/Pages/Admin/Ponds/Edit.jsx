@@ -20,9 +20,29 @@ export default function Edit({ auth }) {
   
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("pond id: " + pond.id)
-        put(route("adminponds.update", pond.id));
-    }
+        put(route("managerponds.update", pond.id), {
+          preserveState: true,
+          onSuccess: () => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Pond updated successfully',
+              icon: 'success',
+              buttons: {
+                confirm: {
+                  text: 'OK',
+                  className:
+                    'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full',
+                  closeModal: true,
+                },
+              },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.visit(route('managerponds.index'));
+                }
+              });
+          },
+        });
+      }
     return (
         <AdminLayout
             user={auth.user}
@@ -111,22 +131,6 @@ export default function Edit({ auth }) {
                                         />
                                         <span className="text-red-600">
                                             {errors.shrimpbreed}
-                                        </span>
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="">Tonnage</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="Tonnage"
-                                            name="tonnage"
-                                            value={data.tonnage}
-                                            onChange={(e) =>
-                                                setData("tonnage", e.target.value)
-                                            }
-                                        />
-                                        <span className="text-red-600">
-                                            {errors.tonnage}
                                         </span>
                                     </div>
                                 </div>

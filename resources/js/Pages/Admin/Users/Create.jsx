@@ -1,11 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { router } from '@inertiajs/react'
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { useEffect } from 'react';
-import { redirect } from "react-router-dom";
   
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, Link } from '@inertiajs/react';
@@ -34,28 +33,7 @@ export default function Create({ auth }) {
     });
  
     const [formSubmitting, setFormSubmitting] = useState(false);
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     setFormSubmitting(true);
-    //     post(route('manageusers.store'), {
-    //       preserveState: true,
-    //       onSuccess: () => {
-    //         Swal.fire({
-    //           title: 'Success!',
-    //           text: 'User created successfully',
-    //           icon: 'success',
-    //           buttons: {
-    //             confirm: {
-    //               text: 'OK',
-    //               className:
-    //                 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full',
-    //               closeModal: true,
-    //             },
-    //           },
-    //         });
-    //       },
-    //     });
-    //   }
+
     function handleSubmit(e) {
         e.preventDefault();
         setFormSubmitting(true);

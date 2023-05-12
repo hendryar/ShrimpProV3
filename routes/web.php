@@ -40,9 +40,6 @@ Route::resource('manageusers', App\Http\Controllers\Admin\RegisterManagerControl
 //managerponds
 
 
-
-Route::resource('posts', \App\Http\Controllers\PostController::class);
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
