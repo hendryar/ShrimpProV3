@@ -1,34 +1,28 @@
 import React from 'react';
-import { router } from '@inertiajs/react'
 import AdminLayout from '@/Layouts/AdminLayout';
-import Swal from 'sweetalert2';
 import { Head, useForm, usePage, Link } from '@inertiajs/react';
 
 export default function Edit({ auth }) {
-
-    const { pond } = usePage().props;
-    
+    const { editedUser } = usePage().props;
     const { data, setData, put, errors } = useForm({
-        name: pond.name || "",
-        area: pond.area || "",
-        shrimpbreed: pond.shrimpbreed || "",
-        tonnage: pond.tonnage || "",
+        editedname: editedUser.name || "",
+        employee_id: editedUser.employee_id || "",
+        email: editedUser.email || "",
+        role: editedUser.role || "",
+        phone: editedUser.phone || "",
+        address: editedUser.address || "",
     });
-
-    console.log("logging pond: " + pond.length);
-    
   
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("pond id: " + pond.id)
-        put(route("adminponds.update", pond.id));
+        put(route("manageusers.update", editedUser.id));
     }
     return (
         <AdminLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit Pond</h2>}
+            // user={auth.user}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit User</h2>}
         >
-            <Head title="Edit Ponds" />
+            <Head title="Edit User" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -38,95 +32,110 @@ export default function Edit({ auth }) {
                             <div className="flex items-center justify-between mb-6">
                                 <Link
                                     className="px-6 py-2 text-white bg-blue-500 rounded-md focus:outline-none"
-                                    href={ route("adminponds.index") }
+                                    href={ route("manageusers.index") }
                                 >
                                     Back
                                 </Link>
                             </div>
 
                             <form name="createForm" onSubmit={handleSubmit}>
-                                {/* //TODO: Add hidden input for id by Mahendra */}
-                                <input type="hidden" name="id" value={pond.id} />
+                                <input type="hidden" name="id" value={editedUser.name} />
                                 <div className="flex flex-col">
                                     <div className="mb-4">
-                                        <label className="">Pond Name</label>
+                                        <label className="">Name</label>
                                         <input
                                             type="text"
                                             className="w-full px-4 py-2"
                                             label="Name"
                                             name="name"
-                                            value={data.name}
+                                            value={data.editedname}
                                             onChange={(e) =>
-                                                setData("name", e.target.value)
+                                                setData("editedname", e.target.value)
                                             }
                                         />
                                         <span className="text-red-600">
-                                            {errors.name}
+                                            {errors.editedname}
                                         </span>
                                     </div>
                                     
                                     <div className="mb-4">
-                                        <label className="">Tonnage</label>
+                                        <label className="">Employee ID</label>
                                         <input
                                             type="text"
                                             className="w-full px-4 py-2"
-                                            label="Tonnage"
-                                            name="tonnage"
-                                            value={data.tonnage}
+                                            label="Emploee_ID"
+                                            name="employee_id"
+                                            value={data.employee_id}
                                             onChange={(e) =>
-                                                setData("tonnage", e.target.value)
+                                                setData("employee_id", e.target.value)
                                             }
                                         />
                                         <span className="text-red-600">
-                                            {errors.tonnage}
+                                            {errors.employee_id}
                                         </span>
                                     </div>
                                     <div className="mb-4">
-                                        <label className="">Pond Area</label>
+                                        <label className="">Email Address</label>
                                         <input
                                             type="text"
                                             className="w-full px-4 py-2"
-                                            label="Area"
-                                            name="area"
-                                            value={data.area}
+                                            label="Email"
+                                            name="email"
+                                            value={data.email}
                                             onChange={(e) =>
-                                                setData("area", e.target.value)
+                                                setData("email", e.target.value)
                                             }
                                         />
                                         <span className="text-red-600">
-                                            {errors.area}
+                                            {errors.email}
                                         </span>
                                     </div>
                                     <div className="mb-4">
-                                        <label className="">Shrimp Breed</label>
+                                        <label className="">Role</label>
                                         <input
                                             type="text"
                                             className="w-full px-4 py-2"
-                                            label="ShrimpBreed"
-                                            name="shrimpbreed"
-                                            value={data.shrimpbreed}
+                                            label="Role"
+                                            name="role"
+                                            value={data.role}
                                             onChange={(e) =>
-                                                setData("shrimpbreed", e.target.value)
+                                                setData("role", e.target.value)
                                             }
                                         />
                                         <span className="text-red-600">
-                                            {errors.shrimpbreed}
+                                            {errors.role}
                                         </span>
                                     </div>
                                     <div className="mb-4">
-                                        <label className="">Tonnage</label>
+                                        <label className="">Phone</label>
                                         <input
                                             type="text"
                                             className="w-full px-4 py-2"
-                                            label="Tonnage"
-                                            name="tonnage"
-                                            value={data.tonnage}
+                                            label="Phone"
+                                            name="phone"
+                                            value={data.phone}
                                             onChange={(e) =>
-                                                setData("tonnage", e.target.value)
+                                                setData("phone", e.target.value)
                                             }
                                         />
                                         <span className="text-red-600">
-                                            {errors.tonnage}
+                                            {errors.phone}
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="">Address</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-4 py-2"
+                                            label="Address"
+                                            name="address"
+                                            value={data.address}
+                                            onChange={(e) =>
+                                                setData("address", e.target.value)
+                                            }
+                                        />
+                                        <span className="text-red-600">
+                                            {errors.address}
                                         </span>
                                     </div>
                                 </div>

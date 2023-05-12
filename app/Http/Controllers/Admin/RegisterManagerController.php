@@ -44,8 +44,10 @@ class RegisterManagerController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        error_log(json_encode($user));
         return Inertia::render('Admin/Users/Edit', [
-            'User' => $user
+            
+            'editedUser' => $user
         ]);
     } 
     
@@ -58,15 +60,17 @@ class RegisterManagerController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.User::class,
+            'email' => 'required|string|email|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'employee_id' => 'required|string|max:255',
         ])->validate();
-    
+        
         User::find($id)->update($request->all());
-        return redirect()->route('manageusers.index')->with('success', 'User updated successfully');    }
+        return dd($request->all());
+    }
+        // return redirect()->route('manageusers.index')->with('success', 'User updated successfully');    }
     
     /**
      * Show the form for creating a new resource.
