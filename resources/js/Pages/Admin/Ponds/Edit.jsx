@@ -65,7 +65,6 @@ export default function Edit({ auth }) {
                             </div>
 
                             <form name="createForm" onSubmit={handleSubmit}>
-                                {/* //TODO: Add hidden input for id by Mahendra */}
                                 <input type="hidden" name="id" value={pond.id} />
                                 <div className="flex flex-col">
                                     <div className="mb-4">

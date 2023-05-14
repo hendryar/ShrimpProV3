@@ -17,7 +17,7 @@ export default function Dashboard({ auth }) {
     function handleSubmit(e) {
         e.preventDefault();
       
-        // Check if all fields are filled
+
         if (data.name && data.area && data.shrimpbreed && data.tonnage) {
           Swal.fire({
             title: 'Success!',
@@ -30,7 +30,7 @@ export default function Dashboard({ auth }) {
             }
           });
         } else {
-          // Show an error message if not all fields are filled
+
           Swal.fire({
             title: 'Error!',
             text: 'Please fill all fields.',

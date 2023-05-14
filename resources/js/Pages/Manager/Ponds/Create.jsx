@@ -1,7 +1,4 @@
 import React from 'react';
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-// import { Head, useForm, Link } from '@inertiajs/react';
-  
 import ManagerLayout from '@/Layouts/ManagerLayout';
 import { Head, useForm, Link } from '@inertiajs/react';
 import Swal from 'sweetalert2';
@@ -128,14 +125,12 @@ export default function Dashboard({ auth }) {
                                 <div className="mt-4">
                                     <button
                                         type="submit"
-                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded"
-                                        
+                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded" 
                                     >
                                         Save
                                     </button>
                                 </div>
                             </form>
-  
                         </div>
                     </div>
                 </div>

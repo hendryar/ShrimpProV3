@@ -98,6 +98,7 @@ export default function Index({ auth }) {
           </div>
         </div>
       </div>
+      
     </AdminLayout>
   );  
 }

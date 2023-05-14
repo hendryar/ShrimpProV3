@@ -14,10 +14,7 @@ export default function Edit({ auth }) {
         shrimpbreed: pond.shrimpbreed || "",
         tonnage: pond.tonnage || "",
     });
-
-    console.log("logging pond: " + pond.length);
     
-  
     function handleSubmit(e) {
         e.preventDefault();
         put(route("managerponds.update", pond.id), {
@@ -66,7 +63,6 @@ export default function Edit({ auth }) {
                             </div>
 
                             <form name="createForm" onSubmit={handleSubmit}>
-                                {/* //TODO: Add hidden input for id by Mahendra */}
                                 <input type="hidden" name="id" value={pond.id} />
                                 <div className="flex flex-col">
                                     <div className="mb-4">
