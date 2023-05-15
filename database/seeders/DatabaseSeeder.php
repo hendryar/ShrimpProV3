@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Raaya Denpasar Barat no.33, Jawa Barat 16750',
             'phone' => '08127362tygh',
         ]);
-        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(10)->create();
         \App\Models\Pond::factory()->create([
             'name' => 'Pond 1',
             'area' => '1000',

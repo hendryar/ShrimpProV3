@@ -13,6 +13,14 @@ export default function Index({ auth }) {
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this pond!',
       icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
       buttons: {
         cancel: {
           text: 'Cancel',
@@ -31,7 +39,8 @@ export default function Index({ auth }) {
       },
     }).then((willDelete) => {
       if (willDelete.isConfirmed) {
-          router.delete(route('adminponds.destroy', id)).then(() => {
+        Swal.fire('Pond Deleted', '', 'success')
+          router.delete(route('managerponds.destroy', id)).then(() => {
             router.reload();
           });
       }
