@@ -29,7 +29,13 @@ export default function Index({ auth }) {
           closeModal: true,
         },
       },
-    })
+    }).then((willDelete) => {
+      if (willDelete.isConfirmed) {
+          router.delete(route('adminponds.destroy', id)).then(() => {
+            router.reload();
+          });
+      }
+    });
   }
   return (
     <ManagerLayout

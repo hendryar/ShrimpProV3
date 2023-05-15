@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use App\Http\Requests\ManagerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Validator;
@@ -50,22 +52,24 @@ class RegisterManagerController extends Controller
         ]);
     } 
     
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
    
-        public function update($id, Request $request){
+     public function update($id, Request $request){
+        $user = User::findOrFail($id);
         $request->validate([
             'editedname' => 'required',
-            'email' => 'required',
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
             'role' => 'required',
             'phone' => 'required',
             'address' => 'required',
             'employee_id' => 'required',
         ]);
-        
         
         //update the user details based on the request inputs
         
@@ -77,7 +81,6 @@ class RegisterManagerController extends Controller
             'address' => $request->address,
             'employee_id' => $request->employee_id,
         ]);
-        // return redirect()->route('manageusers.index');
     }
    
 
@@ -93,34 +96,6 @@ class RegisterManagerController extends Controller
         User::find($id)->delete();
         return redirect()->route('manageusers.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    // public function store(Request $request) : RedirectResponse
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|email|max:255|unique:'.User::class,
-    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    //         'phone' => 'required|string|max:255',
-    //         'address' => 'required|string|max:255',
-    //         'employee_id' => 'required|string|max:255',
-    //     ]);
-
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     'phone' =>$request->phone,
-        //     'address' =>$request->address,
-        //     'employee_id' =>$request->employee_id,
-        // ]);
-    //     event(new Registered($user));
-    //     return redirect()->route('manageusers.index');
-    // }
 
    
     /**
@@ -146,8 +121,7 @@ class RegisterManagerController extends Controller
             'address' =>$request->address,
             'employee_id' =>$request->employee_id,
         ]);
-        event(new Registered($user));   
-        // return redirect()->route('manageusers.index');
+        event(new Registered($user));  
     }
 
     

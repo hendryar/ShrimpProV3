@@ -68,7 +68,7 @@ export default function Create({ auth }) {
     return (
         <AdminLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Pond</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Register a Manager</h2>}
         >
             <Head title="Register User" />
 
