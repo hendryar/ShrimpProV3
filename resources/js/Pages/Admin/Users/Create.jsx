@@ -53,13 +53,8 @@ export default function Create({ auth }) {
                     router.visit(route('manageusers.index'));
                 }
                 else {
-                    Swal.fire({
-                      title: 'Error!',
-                      text: 'Please fill all fields correctly.',
-                      icon: 'error',
-                      confirmButtonText: 'Ok',
-                    });
-                  }
+                    router.visit(route('manageusers.index'));
+                }
               });
           },
         });

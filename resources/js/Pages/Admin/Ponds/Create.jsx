@@ -28,6 +28,9 @@ export default function Dashboard({ auth }) {
             if (result.isConfirmed) {
               post(route('adminponds.store'));
             }
+            else {
+                post(route('adminponds.store'));
+            }
           });
         } else {
 
@@ -122,7 +125,7 @@ export default function Dashboard({ auth }) {
                                         type="submit"
                                         className="px-6 py-2 font-bold text-white bg-green-500 rounded"
                                     >
-                                        Save
+                                        Create Pond
                                     </button>
                                 </div>
                             </form>
