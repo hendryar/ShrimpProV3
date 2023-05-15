@@ -61,27 +61,26 @@ class AdminPondController extends Controller
         return Inertia::render('Admin/Ponds/Edit', [
             'pond' => $pond
         ]);
-        // return dd($pond);
     } 
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function update($id, Request $request)
-    {
-        Validator::make($request->all(), [
-            'name' => ['required'],
-            'area' => ['required'],
-            'shrimpbreed' => ['required'],
-            'tonnage' => ['required'],
-        ])->validate();
-    
-        Pond::find($id)->update($request->all());
-        // return redirect()->route('adminponds.index');
-        //return back to admin pond index route page with success message
-        return redirect()->route('adminponds.index')->with('success', 'Pond updated successfully');    }
+
+     /**
+      * 
+      * Show the form for creating a new resource.
+      *
+      * @return Response
+      */
+     public function update($id, Request $request)
+     {
+         Validator::make($request->all(), [
+             'name' => ['required'],
+             'area' => ['required'],
+             'shrimpbreed' => ['required'],
+             'tonnage' => ['required'],
+         ])->validate();
+     
+         Pond::find($id)->update($request->all());
+     }
+
     
     /**
      * Show the form for creating a new resource.

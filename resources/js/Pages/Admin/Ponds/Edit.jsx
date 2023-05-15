@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { router } from '@inertiajs/react'
 import AdminLayout from '@/Layouts/AdminLayout';
 import Swal from 'sweetalert2';
@@ -14,13 +14,10 @@ export default function Edit({ auth }) {
         shrimpbreed: pond.shrimpbreed || "",
         tonnage: pond.tonnage || "",
     });
-
-    console.log("logging pond: " + pond.length);
     
-  
     function handleSubmit(e) {
         e.preventDefault();
-        put(route("managerponds.update", pond.id), {
+        put(route("adminponds.update", pond.id), {
           preserveState: true,
           onSuccess: () => {
             Swal.fire({
@@ -37,12 +34,13 @@ export default function Edit({ auth }) {
               },
             }).then((result) => {
                 if (result.isConfirmed) {
-                    router.visit(route('managerponds.index'));
+                    router.visit(route('adminponds.index'));
                 }
               });
           },
         });
       }
+
     return (
         <AdminLayout
             user={auth.user}
@@ -132,7 +130,7 @@ export default function Edit({ auth }) {
                                             {errors.shrimpbreed}
                                         </span>
                                     </div>
-                                </div>
+                                    </div>
                                 <div className="mt-4">
                                     <button
                                         type="submit"
