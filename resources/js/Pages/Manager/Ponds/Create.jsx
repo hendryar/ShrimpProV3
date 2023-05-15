@@ -125,7 +125,7 @@ export default function Dashboard({ auth }) {
                                 <div className="mt-4">
                                     <button
                                         type="submit"
-                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded" 
+                                        className="px-6 py-2 font-bold text-white bg-green-500 rounded" 
                                     >
                                         Save
                                     </button>

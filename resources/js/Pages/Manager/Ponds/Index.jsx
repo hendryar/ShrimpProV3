@@ -48,7 +48,7 @@ export default function Index({ auth }) {
             <div className="p-6 bg-white border-b border-gray-200">
               <div className="flex items-center justify-between mb-6">
                 <Link
-                  className="px-6 py-2 text-white bg-green-400 rounded-md focus:outline-none"
+                  className="px-6 py-2 text-white bg-green-500 rounded-md focus:outline-none"
                   href={route("managerponds.create")}
                 >
                   Create Pond
