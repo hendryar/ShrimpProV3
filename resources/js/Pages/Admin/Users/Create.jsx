@@ -1,27 +1,22 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { router } from '@inertiajs/react'
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { useEffect } from 'react';
-import { redirect } from "react-router-dom";
   
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, Link } from '@inertiajs/react';
 import Swal from 'sweetalert2';
 
 export default function Create({ auth }) {
-  
- 
 
     useEffect(() => {
         return () => {
             reset('password', 'password_confirmation');
         };
     }, []);
-
-
   
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -34,28 +29,7 @@ export default function Create({ auth }) {
     });
  
     const [formSubmitting, setFormSubmitting] = useState(false);
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     setFormSubmitting(true);
-    //     post(route('manageusers.store'), {
-    //       preserveState: true,
-    //       onSuccess: () => {
-    //         Swal.fire({
-    //           title: 'Success!',
-    //           text: 'User created successfully',
-    //           icon: 'success',
-    //           buttons: {
-    //             confirm: {
-    //               text: 'OK',
-    //               className:
-    //                 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full',
-    //               closeModal: true,
-    //             },
-    //           },
-    //         });
-    //       },
-    //     });
-    //   }
+
     function handleSubmit(e) {
         e.preventDefault();
         setFormSubmitting(true);
@@ -78,6 +52,9 @@ export default function Create({ auth }) {
                 if (result.isConfirmed) {
                     router.visit(route('manageusers.index'));
                 }
+                else {
+                    router.visit(route('manageusers.index'));
+                }
               });
           },
         });
@@ -86,7 +63,7 @@ export default function Create({ auth }) {
     return (
         <AdminLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Pond</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Register a Manager</h2>}
         >
             <Head title="Register User" />
 
@@ -104,73 +81,6 @@ export default function Create({ auth }) {
                                 </Link>
                             </div>
   
-                            {/* <form name="createForm" onSubmit={handleSubmit}>
-                                <div className="flex flex-col">
-                                    <div className="mb-4">
-                                        <label className="">Name</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="Name"
-                                            name="name"
-                                            value={data.name}
-                                            onChange={(e) =>
-                                                setData("name", e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="">email</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="Area"
-                                            name="area"
-                                            value={data.area}
-                                            onChange={(e) =>
-                                                setData("area", e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="">Shrimp Breed</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="ShrimpBreed"
-                                            name="shrimpbreed"
-                                            value={data.shrimpbreed}
-                                            onChange={(e) =>
-                                                setData("shrimpbreed", e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="">Tonnage</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="Tonnage"
-                                            name="tonnage"
-                                            value={data.tonnage}
-                                            onChange={(e) =>
-                                                setData("tonnage", e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <button
-                                        type="submit"
-                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded"
-                                    >
-                                        Save
-                                    </button>
-                                </div>
-
-
-
-                            </form> */}
                             <form onSubmit={handleSubmit}>
                                 <div>
                                     <InputLabel htmlFor="name" value="Name" />
@@ -185,8 +95,7 @@ export default function Create({ auth }) {
                                         onChange={(e) => setData('name', e.target.value)}
                                         required
                                     />
-
-                                    <InputError message={errors.name} className="mt-2" />
+                            <InputError message={errors.name} className="mt-2" />
                                 </div>
                                 {/* Employee ID */}
                                 <div className='mt-4'>

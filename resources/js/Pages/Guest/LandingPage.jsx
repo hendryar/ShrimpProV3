@@ -1,8 +1,13 @@
 import GuestLayout from '@/Layouts/GuestLayout';
+import ManagerLayout from '@/Layouts/ManagerLayout';
+import AdminLayout from '@/Layouts/AdminLayout';
 import { Head } from '@inertiajs/react';
 
 export default function LandingPage({ auth }) {
-    return (
+
+
+  return (
+    <div>
         <GuestLayout
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Welcome To ShrimpPRO</h2>}
         >
@@ -19,5 +24,6 @@ export default function LandingPage({ auth }) {
                 </div>
             </div>
         </GuestLayout>
-    );
+    </div>
+  );
 }

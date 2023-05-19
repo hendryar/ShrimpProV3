@@ -30,7 +30,7 @@ export default function Guest({ header, children }) {
                                 {/* <NavLink href={route('chirps.index')} active={route().current('chirps.index')}>
                                     Chirps
                                 </NavLink> */}
-                                <NavLink href={route('posts.index')} active={route().current('posts.index')}>
+                                <NavLink active={route().current('posts.index')}>
                                 View Alerts
                                 </NavLink>
                                 <NavLink href={route('login')} active={route().current('login')}>
@@ -67,9 +67,9 @@ export default function Guest({ header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        {/* <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
-                        </ResponsiveNavLink>
+                        </ResponsiveNavLink> */}
 
                         {/* <ResponsiveNavLink href={route('chirps.index')} active={route().current('chirps.index')}>
                             Chirps

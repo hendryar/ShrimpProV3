@@ -12,6 +12,14 @@ export default function Index({ auth }) {
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this user',
       icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
       buttons: {
         cancel: {
           text: 'Cancel',
@@ -28,7 +36,15 @@ export default function Index({ auth }) {
           closeModal: true,
         },
       },
-    })
+    }).then((willDelete) => {
+      if (willDelete.isConfirmed) {
+        Swal.fire('User Deleted', '', 'success')
+          router.delete(route('manageusers.destroy', id)).then(() => {
+            router.reload();
+          });
+      }
+    });
+
   }
 
   return (
@@ -47,7 +63,7 @@ export default function Index({ auth }) {
             <div className="p-6 bg-white border-b border-gray-200">
               <div className="flex items-center justify-between mb-6">
                 <Link
-                  className="px-6 py-2 text-white bg-green-400 rounded-md focus:outline-none"
+                  className="px-6 py-2 text-white bg-green-500 rounded-md focus:outline-none"
                   href={route("manageusers.create")}
                 >
                   Register a Manager
@@ -98,6 +114,7 @@ export default function Index({ auth }) {
           </div>
         </div>
       </div>
+      
     </AdminLayout>
   );  
 }

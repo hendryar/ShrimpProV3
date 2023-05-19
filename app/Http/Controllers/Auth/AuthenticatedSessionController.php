@@ -34,28 +34,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
         $role = Auth::user()->role;
                 switch($role){
                     case 'admin':
-                        if(url()->previous() == 'http://localhost:8000/admin_dashboard'){
-                            return redirect(RouteServiceProvider::REGISTER);
-                        }else{
-                            return redirect(RouteServiceProvider::ADMIN);
-                        }
+                        return redirect(RouteServiceProvider::ADMIN);
                     case 'manager':
                         return redirect(RouteServiceProvider::MANAGER);
-                    // default:
-                    //     return redirect(RouteServiceProvider::HOME);
-                }//end
-                // switch($role){
-                //     case 'admin':
-                //         return redirect()->intended(RouteServiceProvider::ADMIN);
-                //     case 'manager':
-                //         return redirect()->intended(RouteServiceProvider::MANAGER);
-                //     default:
-                //         return redirect()->intended(RouteServiceProvider::HOME);
-                // }//end
+                    default:
+                        return redirect(RouteServiceProvider::HOME);
+                }
     }
 
     /**

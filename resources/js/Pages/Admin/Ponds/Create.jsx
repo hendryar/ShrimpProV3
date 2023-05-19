@@ -17,7 +17,7 @@ export default function Dashboard({ auth }) {
     function handleSubmit(e) {
         e.preventDefault();
       
-        // Check if all fields are filled
+
         if (data.name && data.area && data.shrimpbreed && data.tonnage) {
           Swal.fire({
             title: 'Success!',
@@ -28,9 +28,12 @@ export default function Dashboard({ auth }) {
             if (result.isConfirmed) {
               post(route('adminponds.store'));
             }
+            else {
+                post(route('adminponds.store'));
+            }
           });
         } else {
-          // Show an error message if not all fields are filled
+
           Swal.fire({
             title: 'Error!',
             text: 'Please fill all fields.',
@@ -120,9 +123,9 @@ export default function Dashboard({ auth }) {
                                 <div className="mt-4">
                                     <button
                                         type="submit"
-                                        className="px-6 py-2 font-bold text-white bg-green-400 rounded"
+                                        className="px-6 py-2 font-bold text-white bg-green-500 rounded"
                                     >
-                                        Save
+                                        Create Pond
                                     </button>
                                 </div>
                             </form>

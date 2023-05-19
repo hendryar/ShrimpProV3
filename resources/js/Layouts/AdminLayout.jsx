@@ -9,7 +9,6 @@ import { Link } from '@inertiajs/react';
 
 export default function AdminLayout({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
     return (
         //this div is background color.
         <div className="min-h-screen bg-blue-50">

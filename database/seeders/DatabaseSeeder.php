@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Hendry Suryadi arya',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('qweqweqwe'),
+            'password' => bcrypt('adminadmin'),
             'role' => 'admin',
             'employee_id' => 'AD001',
             'address' => 'Jl. Raya Puncak Km. 77, Cisarua, Bogor, Jawa Barat 16750',
@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Ketut Mahendra',
             'email' => 'manager@gmail.com',
-            'password' => bcrypt('qweqweqwe'),
+            'password' => bcrypt('managermanager'),
             'role' => 'manager',
             'employee_id' => 'E001',
             'address' => 'Jl. Raaya Denpasar Barat no.33, Jawa Barat 16750',
             'phone' => '08127362tygh',
         ]);
-        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(10)->create();
         \App\Models\Pond::factory()->create([
             'name' => 'Pond 1',
             'area' => '1000',

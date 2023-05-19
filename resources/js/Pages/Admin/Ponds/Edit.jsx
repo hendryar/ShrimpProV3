@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { router } from '@inertiajs/react'
 import AdminLayout from '@/Layouts/AdminLayout';
 import Swal from 'sweetalert2';
@@ -14,15 +14,33 @@ export default function Edit({ auth }) {
         shrimpbreed: pond.shrimpbreed || "",
         tonnage: pond.tonnage || "",
     });
-
-    console.log("logging pond: " + pond.length);
     
-  
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("pond id: " + pond.id)
-        put(route("adminponds.update", pond.id));
-    }
+        put(route("adminponds.update", pond.id), {
+          preserveState: true,
+          onSuccess: () => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Pond updated successfully',
+              icon: 'success',
+              buttons: {
+                confirm: {
+                  text: 'OK',
+                  className:
+                    'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full',
+                  closeModal: true,
+                },
+              },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.visit(route('adminponds.index'));
+                }
+              });
+          },
+        });
+      }
+
     return (
         <AdminLayout
             user={auth.user}
@@ -45,7 +63,6 @@ export default function Edit({ auth }) {
                             </div>
 
                             <form name="createForm" onSubmit={handleSubmit}>
-                                {/* //TODO: Add hidden input for id by Mahendra */}
                                 <input type="hidden" name="id" value={pond.id} />
                                 <div className="flex flex-col">
                                     <div className="mb-4">
@@ -113,23 +130,7 @@ export default function Edit({ auth }) {
                                             {errors.shrimpbreed}
                                         </span>
                                     </div>
-                                    <div className="mb-4">
-                                        <label className="">Tonnage</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-2"
-                                            label="Tonnage"
-                                            name="tonnage"
-                                            value={data.tonnage}
-                                            onChange={(e) =>
-                                                setData("tonnage", e.target.value)
-                                            }
-                                        />
-                                        <span className="text-red-600">
-                                            {errors.tonnage}
-                                        </span>
                                     </div>
-                                </div>
                                 <div className="mt-4">
                                     <button
                                         type="submit"
