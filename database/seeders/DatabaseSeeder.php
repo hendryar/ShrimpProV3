@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Hendry Suryadi arya',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('adminadmin'),
+            'password' => bcrypt('qweqweqwe'),
             'role' => 'admin',
             'employee_id' => 'AD001',
             'address' => 'Jl. Raya Puncak Km. 77, Cisarua, Bogor, Jawa Barat 16750',
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Ketut Mahendra',
             'email' => 'manager@gmail.com',
-            'password' => bcrypt('managermanager'),
+            'password' => bcrypt('qweqweqwe'),
             'role' => 'manager',
             'employee_id' => 'E001',
             'address' => 'Jl. Raaya Denpasar Barat no.33, Jawa Barat 16750',
